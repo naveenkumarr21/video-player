@@ -1,0 +1,214 @@
+/* === Bottom Sheet Container === */
+.related-videos {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 65%;
+  background: var(--color-surface);
+  border-radius: 24px 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 50;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.4);
+  animation: sheetFadeIn 0.25s ease;
+}
+
+/* Small drag indicator line */
+.related-videos::before {
+  content: "";
+  width: 42px;
+  height: 4px;
+  background: var(--color-text-secondary);
+  border-radius: 2px;
+  align-self: center;
+  margin: 10px 0 6px;
+  opacity: 0.6;
+}
+
+/* === Header === */
+.related-videos__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 14px;
+  border-bottom: 1px solid var(--color-surface-elevated);
+  position: sticky;
+  top: 0;
+  background: var(--color-surface);
+  z-index: 2;
+}
+
+.related-videos__header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.related-videos__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  font-family: var(--font-display);
+}
+
+.related-videos__count {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  background: var(--color-surface-elevated);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+/* Close Button */
+.related-videos__close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-surface-elevated);
+  color: var(--color-text);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.related-videos__close:hover {
+  background: var(--color-bg);
+  transform: scale(1.1);
+}
+
+.related-videos__close:active {
+  transform: scale(0.95);
+}
+
+/* === Scrollable List === */
+.related-videos__list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 20px 20px;
+  scrollbar-width: thin;
+}
+
+/* Scrollbar (Webkit) */
+.related-videos__list::-webkit-scrollbar {
+  width: 6px;
+}
+.related-videos__list::-webkit-scrollbar-thumb {
+  background: var(--color-surface-elevated);
+  border-radius: 3px;
+}
+
+/* === Video Item Card === */
+.related-video-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background: var(--color-surface-elevated);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.related-video-item:hover {
+  background: var(--color-bg);
+}
+
+.related-video-item:active {
+  transform: scale(0.98);
+}
+
+/* Thumbnail */
+.related-video__thumbnail {
+  position: relative;
+  width: 140px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-bg);
+  flex-shrink: 0;
+}
+
+.related-video__thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Duration Badge */
+.related-video__duration {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-display);
+}
+
+/* Info Section */
+.related-video__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.related-video__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 6px 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-family: var(--font-display);
+}
+
+.related-video__category {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+/* === Mobile Adjustments === */
+@media (max-width: 768px) {
+  .related-videos {
+    height: 72%;
+  }
+
+  .related-video__thumbnail {
+    width: 120px;
+    height: 68px;
+  }
+
+  .related-video__title {
+    font-size: 13px;
+  }
+}
+
+/* === Entry Animation Fallback === */
+@keyframes sheetFadeIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
